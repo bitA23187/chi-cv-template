@@ -75,22 +75,14 @@
 \renewcommand\large{\@setfontsize\large{11pt}{18}}
 
 % heading font: Avenir Next
-\IfFontExistsTF{Avenir Next LT Pro}{
-    \newfontfamily{\headingfont}{Avenir Next LT Pro}
-}{
-    \IfFontExistsTF{Avenir Next}{
-        \newfontfamily{\headingfont}{Avenir Next}
-    }{
-        % use local font in ./fonts folder
-        \newfontfamily{\headingfont}{AvenirNextLTPro}[
-            Path = ./fonts/,
-            Extension = .otf,
-            UprightFont = *-Regular,
-            BoldFont = *-Bold,
-            ItalicFont = *-Italic,
-        ]
-    }
-}
+% \newfontfamily{\headingfont}{AvenirNextLTPro}[
+%     Path = ./fonts/,
+%     Extension = .otf,
+%     UprightFont = *-Regular,
+%     BoldFont = *-Bold,
+%     ItalicFont = *-Italic,
+% ]
+
 
 % add CJK fonts and use zh line break
 % usage: \useChinese{<normal font weight>}{<bold font weight>}
@@ -104,11 +96,29 @@
     ]
     \XeTeXlinebreaklocale "zh"
     \XeTeXlinebreakskip = 0pt plus 1pt
+
+    % 在这里设置标题字体
+    \newfontfamily{\headingfont}{SmileySans-Oblique}[
+        Path = ./fonts/,
+        Extension = .otf
+    ]
+    \newCJKfontfamily{\CJKheadingfont}{SmileySans-Oblique}[
+        Path = ./fonts/,
+        Extension = .otf
+    ]
 }
+
+% % heading font: 苹方
+% \newfontfamily{\headingfont}{SmileySans-Oblique}[
+%     Path = ./fonts/,
+%     Extension = .otf
+% ]
+
+
 
 % format for section title
 \titleformat{\section}
-    {\headingfont\Large}                % shape
+    {\headingfont\CJKheadingfont\Large}                % shape
     {}                                  % format
     {0em}                               % label
     {\vspace{-2ex}{\color{gray}\hrule}}  % before-code
@@ -152,7 +162,7 @@
 
 
 \NewDocumentCommand{\name}{ m }
-{{\headingfont\Huge#1}}
+{{\headingfont\CJKheadingfont\Huge#1}}
 
 
 \NewDocumentEnvironment{compactlist}{}
