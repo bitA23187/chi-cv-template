@@ -12,15 +12,28 @@
 \begin{document}
 
 %% basic personal info
+\togglephoto{true} % 设置为 true 显示照片，false 不显示照片
+
+\begin{namephoto}
+\ifshowphoto
+  \vspace*{0.3cm}  % 向下移动 namephoto 环境，以手动对齐图片
+\fi
 \name{迟猫猫}
 \begin{basicinfo}
   \info{\email{1234@gmail.com}}
   \info{\phone{199 9999 8888}}
   \info{\homepage{skyzh.dev}[https://skyzh.dev]}
   \info{\github{skyzh}[https://github.com/skyzh]}
-  \info{\linkedinsquare{alex-chi-skyzh}[https://www.linkedin.com/in/alex-chi-skyzh/?originalSubdomain=cn]}
+  % \info{\linkedinsquare{alex-chi-skyzh}[https://www.linkedin.com/in/alex-chi-skyzh/?originalSubdomain=cn]}
   % \phone{}
 \end{basicinfo}
+\end{namephoto}
+
+\ifshowphoto
+  \photo{img/pic.png}
+  \vspace{0.3cm}  % 您可以根据需要调整这个值，以下移正文内容，防止与照片重叠
+\fi
+
 
 \section{教育经历}
 \cventry{卡内基梅隆大学}

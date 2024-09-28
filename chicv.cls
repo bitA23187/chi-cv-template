@@ -13,6 +13,7 @@
 ]{geometry}
 
 \RequirePackage{fancyhdr}
+\RequirePackage{tikz}
 
 % For font setting
 \RequirePackage[T1]{fontenc}
@@ -114,6 +115,11 @@
 %     Extension = .otf
 % ]
 
+\newenvironment{namephoto}{%
+  \noindent\begin{minipage}[t]{0.7\textwidth}
+}{%
+  \end{minipage}%
+}
 
 
 % format for section title
@@ -276,3 +282,18 @@
 % Set up pagestyle
 \pagestyle{default}
 \AtEndDocument{\thispagestyle{lastpage}}
+
+\NewDocumentCommand{\photo}{ m }{%
+    \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north east,inner sep=0pt,xshift=-2cm,yshift=-0.5cm] at (current page.north east) {%
+        \includegraphics[width=3cm]{#1}%
+    };
+    \end{tikzpicture}%
+}
+
+\newif\ifshowphoto
+\showphotofalse % 默认不显示照片
+
+\NewDocumentCommand{\togglephoto}{ m }{
+  \ifthenelse{\equal{#1}{true}}{\showphototrue}{\showphotofalse}
+}
